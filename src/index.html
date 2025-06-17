@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Header ve Footer</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#818CF8'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        main {
+            flex: 1;
+            padding-top: 70px;
+        }
+        @media (max-width: 768px) {
+            main {
+                padding-top: 60px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 h-[70px] md:h-[70px] flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/" class="text-2xl font-['Pacifico'] text-primary transition-opacity duration-300 hover:opacity-80">logo</a>
+            
+            <!-- Social Media Icons (Hidden on Mobile) -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="https://facebook.com" target="_blank" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary transition-colors duration-300">
+                    <i class="ri-facebook-fill ri-lg"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary transition-colors duration-300">
+                    <i class="ri-instagram-fill ri-lg"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary transition-colors duration-300">
+                    <i class="ri-twitter-x-fill ri-lg"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary transition-colors duration-300">
+                    <i class="ri-linkedin-fill ri-lg"></i>
+                </a>
+            </div>
+            
+            <!-- Right Side Icons -->
+            <div class="flex items-center gap-5">
+                <button id="loginBtn" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary transition-colors duration-300">
+                    <i class="ri-user-line ri-lg"></i>
+                </button>
+                <button id="cartBtn" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary transition-colors duration-300 relative">
+                    <i class="ri-shopping-bag-line ri-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden w-8 h-8 flex items-center justify-center text-gray-700">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-black bg-opacity-50 z-50 modal">
+        <div class="modal-content bg-white w-full h-full max-w-xs ml-auto flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b">
+                <span class="text-lg font-medium">Menü</span>
+                <button id="closeMobileMenu" class="w-8 h-8 flex items-center justify-center text-gray-700">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <div class="p-4 border-b">
+                <div class="flex flex-col gap-4">
+                    <a href="https://facebook.com" target="_blank" class="flex items-center gap-3 text-gray-700">
+                        <i class="ri-facebook-fill ri-lg"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="flex items-center gap-3 text-gray-700">
+                        <i class="ri-instagram-fill ri-lg"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="flex items-center gap-3 text-gray-700">
+                        <i class="ri-twitter-x-fill ri-lg"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 text-gray-700">
+                        <i class="ri-linkedin-fill ri-lg"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center modal">
+        <div class="modal-content bg-white w-full max-w-md mx-4 rounded shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Giriş Yap</h2>
+                <button class="closeModal w-8 h-8 flex items-center justify-center text-gray-700">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-posta</label>
+                    <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="ornek@email.com">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
+                    <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="••••••••">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                        <label for="remember" class="ml-2 block text-sm text-gray-700">Beni hatırla</label>
+                    </div>
+                    <a href="#" class="text-sm text-primary hover:underline">Şifremi unuttum</a>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white py-2 px-4 !rounded-button hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap">Giriş Yap</button>
+                <div class="text-center text-sm text-gray-600">
+                    Hesabınız yok mu? <a href="#" class="text-primary hover:underline">Kayıt ol</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center modal">
+        <div class="modal-content bg-white w-full max-w-md mx-4 rounded shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Sepetim</h2>
+                <button class="closeModal w-8 h-8 flex items-center justify-center text-gray-700">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-4 max-h-[60vh] overflow-y-auto">
+                <div class="flex items-center gap-4 pb-4 border-b">
+                    <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                        <i class="ri-t-shirt-line ri-xl text-gray-500"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Pamuklu T-shirt</h3>
+                        <p class="text-sm text-gray-600">Beden: M, Renk: Siyah</p>
+                        <div class="flex items-center justify-between mt-1">
+                            <div class="flex items-center gap-2">
+                                <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">-</button>
+                                <span class="text-sm">1</span>
+                                <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">+</button>
+                            </div>
+                            <span class="font-medium">249,90 ₺</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 pb-4 border-b">
+                    <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                        <i class="ri-shirt-line ri-xl text-gray-500"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Slim Fit Gömlek</h3>
+                        <p class="text-sm text-gray-600">Beden: L, Renk: Mavi</p>
+                        <div class="flex items-center justify-between mt-1">
+                            <div class="flex items-center gap-2">
+                                <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">-</button>
+                                <span class="text-sm">1</span>
+                                <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">+</button>
+                            </div>
+                            <span class="font-medium">349,90 ₺</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 pb-4 border-b">
+                    <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                        <i class="ri-footprint-line ri-xl text-gray-500"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Spor Ayakkabı</h3>
+                        <p class="text-sm text-gray-600">Numara: 42, Renk: Gri</p>
+                        <div class="flex items-center justify-between mt-1">
+                            <div class="flex items-center gap-2">
+                                <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">-</button>
+                                <span class="text-sm">1</span>
+                                <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">+</button>
+                            </div>
+                            <span class="font-medium">599,90 ₺</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Ara Toplam:</span>
+                    <span class="font-medium">1.199,70 ₺</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span class="text-gray-600">Kargo:</span>
+                    <span class="font-medium">Ücretsiz</span>
+                </div>
+                <div class="flex justify-between text-lg font-semibold mb-4">
+                    <span>Toplam:</span>
+                    <span>1.199,70 ₺</span>
+                </div>
+                <button class="w-full bg-primary text-white py-2 px-4 !rounded-button hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap">Ödemeye Geç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Modal -->
+    <div id="accountModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center modal">
+        <div class="modal-content bg-white w-full max-w-md mx-4 rounded shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Hesap Bilgileri</h2>
+                <button class="closeModal w-8 h-8 flex items-center justify-center text-gray-700">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
+                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" value="Ahmet Yılmaz">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">E-posta</label>
+                    <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" value="ahmet.yilmaz@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Telefon</label>
+                    <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" value="+90 555 123 4567">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Adres</label>
+                    <textarea class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" rows="3">Atatürk Mah. Cumhuriyet Cad. No:123 Daire:5
+Kadıköy, İstanbul 34700</textarea>
+                </div>
+                <button class="w-full bg-primary text-white py-2 px-4 !rounded-button hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap">Bilgileri Güncelle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center modal">
+        <div class="modal-content bg-white w-full max-w-md mx-4 rounded shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">İletişim</h2>
+                <button class="closeModal w-8 h-8 flex items-center justify-center text-gray-700">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full">
+                        <i class="ri-map-pin-line ri-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">Adres</h3>
+                        <p class="text-sm text-gray-600">Bağdat Cad. No:42, Kadıköy, İstanbul</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full">
+                        <i class="ri-phone-line ri-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">Telefon</h3>
+                        <p class="text-sm text-gray-600">+90 216 555 7890</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full">
+                        <i class="ri-mail-line ri-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">E-posta</h3>
+                        <p class="text-sm text-gray-600">info@sirketim.com</p>
+                    </div>
+                </div>
+                <div class="pt-4 border-t">
+                    <h3 class="font-medium mb-2">Bize Mesaj Gönderin</h3>
+                    <form class="space-y-3">
+                        <div>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Adınız Soyadınız">
+                        </div>
+                        <div>
+                            <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="E-posta Adresiniz">
+                        </div>
+                        <div>
+                            <textarea class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" rows="3" placeholder="Mesajınız"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-2 px-4 !rounded-button hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Placeholder) -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="min-h-[800px] flex items-center justify-center">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">Sayfa İçeriği</h1>
+                <p class="text-gray-600 max-w-md mx-auto">Bu alan sayfa içeriğini temsil etmektedir. Header ve footer tasarımını göstermek için oluşturulmuştur.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 w-full py-8">
+        <div class="container mx-auto px-4">
+            <nav class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10">
+                <button id="accountBtn" class="text-gray-700 hover:text-primary transition-colors duration-300 whitespace-nowrap">Hesap Bilgileri</button>
+                <button id="contactBtn" class="text-gray-700 hover:text-primary transition-colors duration-300 whitespace-nowrap">İletişim</button>
+                <a href="/duyurular" class="text-gray-700 hover:text-primary transition-colors duration-300 whitespace-nowrap">Duyurular</a>
+                <a href="/sss" class="text-gray-700 hover:text-primary transition-colors duration-300 whitespace-nowrap">SSS</a>
+            </nav>
+            <div class="mt-6 text-center text-sm text-gray-600">
+                <p>© 2025 logo. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="modalHandlers">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal open buttons
+            const loginBtn = document.getElementById('loginBtn');
+            const cartBtn = document.getElementById('cartBtn');
+            const accountBtn = document.getElementById('accountBtn');
+            const contactBtn = document.getElementById('contactBtn');
+            
+            // Modals
+            const loginModal = document.getElementById('loginModal');
+            const cartModal = document.getElementById('cartModal');
+            const accountModal = document.getElementById('accountModal');
+            const contactModal = document.getElementById('contactModal');
+            
+            // Close buttons
+            const closeButtons = document.querySelectorAll('.closeModal');
+            
+            // Open modals
+            loginBtn.addEventListener('click', () => openModal(loginModal));
+            cartBtn.addEventListener('click', () => openModal(cartModal));
+            accountBtn.addEventListener('click', () => openModal(accountModal));
+            contactBtn.addEventListener('click', () => openModal(contactModal));
+            
+            // Close modals when clicking close button
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+            
+            // Close modals when clicking outside
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+            
+            // Functions to open and close modals
+            function openModal(modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeModal(modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+    
+    <script id="mobileMenuHandlers">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeMobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile menu when clicking outside
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
