@@ -1,6 +1,10 @@
 # ECommerceClientUI
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+ 
+🧩 Implementing the web template created in readdyAI for E-commerce Client UI in Angular 
+🧩 Using and managing web modal structure with signal(boolean) and control flow (@if) in Angular
+🧩 Redirecting pages with routerlink
 
 ## Development server
 
