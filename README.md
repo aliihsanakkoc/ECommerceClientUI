@@ -5,6 +5,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 🧩 Implementing the web template created in readdyAI for E-commerce Client UI in Angular 
 🧩 Using and managing web modal structure with signal(boolean) and control flow (@if) in Angular
 🧩 Redirecting pages with routerlink
+🧩 Lazy loading path identification
 
 ## Development server
 
