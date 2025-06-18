@@ -1,0 +1,78 @@
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="modal-content bg-white w-full max-w-md mx-4 rounded shadow-lg p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold">Sepetim</h2>
+            <button (click)="closeCartModal()" class="closeModal w-8 h-8 flex items-center justify-center text-gray-700">
+                <i class="ri-close-line ri-lg"></i>
+            </button>
+        </div>
+        <div class="space-y-4 max-h-[60vh] overflow-y-auto">
+            <div class="flex items-center gap-4 pb-4 border-b">
+                <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                    <i class="ri-t-shirt-line ri-xl text-gray-500"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">Pamuklu T-shirt</h3>
+                    <p class="text-sm text-gray-600">Beden: M, Renk: Siyah</p>
+                    <div class="flex items-center justify-between mt-1">
+                        <div class="flex items-center gap-2">
+                            <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">-</button>
+                            <span class="text-sm">1</span>
+                            <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">+</button>
+                        </div>
+                        <span class="font-medium">249,90 ₺</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 pb-4 border-b">
+                <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                    <i class="ri-shirt-line ri-xl text-gray-500"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">Slim Fit Gömlek</h3>
+                    <p class="text-sm text-gray-600">Beden: L, Renk: Mavi</p>
+                    <div class="flex items-center justify-between mt-1">
+                        <div class="flex items-center gap-2">
+                            <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">-</button>
+                            <span class="text-sm">1</span>
+                            <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">+</button>
+                        </div>
+                        <span class="font-medium">349,90 ₺</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 pb-4 border-b">
+                <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
+                    <i class="ri-footprint-line ri-xl text-gray-500"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">Spor Ayakkabı</h3>
+                    <p class="text-sm text-gray-600">Numara: 42, Renk: Gri</p>
+                    <div class="flex items-center justify-between mt-1">
+                        <div class="flex items-center gap-2">
+                            <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">-</button>
+                            <span class="text-sm">1</span>
+                            <button class="w-6 h-6 flex items-center justify-center bg-gray-100 rounded">+</button>
+                        </div>
+                        <span class="font-medium">599,90 ₺</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 pt-4 border-t">
+            <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Ara Toplam:</span>
+                <span class="font-medium">1.199,70 ₺</span>
+            </div>
+            <div class="flex justify-between mb-4">
+                <span class="text-gray-600">Kargo:</span>
+                <span class="font-medium">Ücretsiz</span>
+            </div>
+            <div class="flex justify-between text-lg font-semibold mb-4">
+                <span>Toplam:</span>
+                <span>1.199,70 ₺</span>
+            </div>
+            <button class="w-full bg-primary text-white py-2 px-4 !rounded-button hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap">Ödemeye Geç</button>
+        </div>
+    </div>
+</div>
