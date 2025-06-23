@@ -1,0 +1,1 @@
+export const ApiUri = "http://localhost:60805/api/";

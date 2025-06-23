@@ -36,7 +36,6 @@
         </div>
     </div>
 </header>
-
 <!-- Mobile Menu -->
 <div id="mobileMenu" class="fixed inset-0 bg-black bg-opacity-50 z-50 modal">
     <div class="modal-content bg-white w-full h-full max-w-xs ml-auto flex flex-col">
@@ -68,19 +67,14 @@
         </div>
     </div>
 </div>
-
 <!-- Login Modal -->
 @if(showLogin()){<app-login></app-login>}
-
 <!-- Cart Modal -->
 @if(showCart()){<app-cart></app-cart>}
-
 <!-- Account Modal -->
 @if(showAccount()){<app-account></app-account>}
-
 <!-- Contact Modal -->
 @if(showContact()){<app-contact></app-contact>}
-
 <!-- Main Content (Placeholder) -->
 <main class="container mx-auto px-4 py-8">
     <div class="min-h-[800px] flex items-center justify-center">
@@ -89,7 +83,6 @@
         </div>
     </div>
 </main>
-
 <!-- Footer -->
 <footer class="bg-gray-100 w-full py-8">
     <div class="container mx-auto px-4">
