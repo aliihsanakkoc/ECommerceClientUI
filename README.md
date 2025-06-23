@@ -7,6 +7,7 @@ It consumes the ECommerceEntegratorAPI (https://github.com/aliihsanakkoc/ECommer
 🧩 Using and managing web modal structure with signal(boolean) and control flow (@if) in Angular <br> 
 🧩 Redirecting pages with routerlink <br> 
 🧩 Lazy loading path identification <br> 
+🧩 FormsModule, RxJS and HttpClient is implementing MVC (Model-View-Controller from Architectural Patterns) in Angular (Interface-Component-Service) <br>
 
 ## Development server
 
