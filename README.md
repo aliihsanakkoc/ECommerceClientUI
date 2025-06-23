@@ -3,10 +3,10 @@
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
 It consumes the ECommerceEntegratorAPI (https://github.com/aliihsanakkoc/ECommerceEntegratorApi) in the repo as an API.
  
-🧩 Implementing the web template created in readdyAI for E-commerce Client UI in Angular \ 
-🧩 Using and managing web modal structure with signal(boolean) and control flow (@if) in Angular \
-🧩 Redirecting pages with routerlink \
-🧩 Lazy loading path identification \
+🧩 Implementing the web template created in readdyAI for E-commerce Client UI in Angular -- 
+🧩 Using and managing web modal structure with signal(boolean) and control flow (@if) in Angular --
+🧩 Redirecting pages with routerlink --
+🧩 Lazy loading path identification --
 
 ## Development server
 
