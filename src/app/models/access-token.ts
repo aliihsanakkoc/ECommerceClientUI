@@ -1,4 +1,4 @@
 export interface AccessToken{
     token:string,
-    expirationDate:string
+    expirationDate:Date
 }
