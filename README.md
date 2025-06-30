@@ -8,7 +8,7 @@ It consumes the ECommerceEntegratorAPI (https://github.com/aliihsanakkoc/ECommer
 🧩 Redirecting pages with routerlink <br> 
 🧩 Lazy loading path identification <br> 
 🧩 FormsModule, RxJS and HttpClient is implementing MVC (Model-View-Controller from Architectural Patterns) in Angular (Interface-Component-Service) <br>
-
+🧩 Automatic AccessToken refresh with HttpInterceptorFn <br>
 ## Development server
 
 To start a local development server, run:
