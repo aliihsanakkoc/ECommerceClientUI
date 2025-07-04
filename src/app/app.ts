@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, linkedSignal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { showAccountModalSignal, showCartModalSignal, showContactModalSignal, showLoginModalSignal } from './modal.state';
 import { Login } from './modals/login/login';
 import { Cart } from "./modals/cart/cart";
 import { Account } from "./modals/account/account";
 import { Contact } from "./modals/contact/contact";
+import { accessTokenSignal } from './access-token-signal';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class App {
   showCart=showCartModalSignal;
   showAccount=showAccountModalSignal;
   showContact=showContactModalSignal;
+  isLoggedIn = linkedSignal(()=>accessTokenSignal()!==null);
   openLoginModal(){
     this.showLogin.set(true);
   }
@@ -28,5 +30,10 @@ export class App {
   }
   openContactModal(){
     this.showContact.set(true);
+  }
+  logout(){
+    sessionStorage.removeItem("accessToken");
+    this.isLoggedIn.set(false);
+    window.location.reload();
   }
 }

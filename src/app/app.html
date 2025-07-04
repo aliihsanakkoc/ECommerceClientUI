@@ -22,9 +22,15 @@
         
         <!-- Right Side Icons -->
         <div class="flex items-center gap-5">
+            @if(!isLoggedIn()){
             <button (click)="openLoginModal()" id="loginBtn" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary transition-colors duration-300">
                 <i class="ri-user-line ri-lg"></i>
             </button>
+            }@else{
+            <button (click)="logout()" id="loginBtn" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary transition-colors duration-300">
+                <i class="ri-logout-box-r-line"></i>
+            </button>
+            }
             <button (click)="openCartModal()" id="cartBtn" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary transition-colors duration-300 relative">
                 <i class="ri-shopping-bag-line ri-lg"></i>
                 <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>

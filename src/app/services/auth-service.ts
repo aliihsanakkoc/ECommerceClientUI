@@ -17,6 +17,7 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${ApiUri}Auth/Login`, user).pipe(tap(response=>{
       sessionStorage.setItem("accessToken",JSON.stringify(response.accessToken));
       showLoginModalSignal.set(false);
+      window.location.reload();
     }))
   }
   refreshToken():Observable<AccessToken>{
