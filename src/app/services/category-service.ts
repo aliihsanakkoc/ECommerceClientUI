@@ -11,7 +11,7 @@ export class CategoryService {
 
   constructor(private http:HttpClient) { }
 
-  getAllCategories():Observable<Category[]>{
-    return this.http.get<Category[]>(`${ApiUri}Categories/OData`);
+  getCategories(topCategoryId:number):Observable<Category[]>{
+    return this.http.get<Category[]>(`${ApiUri}Categories/OData?$filter=topCategoryId eq ${topCategoryId} and id ne 1`);
   }
 }

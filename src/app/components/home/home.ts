@@ -1,18 +1,19 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { CategoryService } from '../../services/category-service';
+import { showCategoryModalSignal } from '../../modal.state';
+import { CategorySelect } from '../../modals/category-select/category-select';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CategorySelect],
   templateUrl: './home.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Home {
 
-  constructor(private categoryService:CategoryService){}
+  showCategory = showCategoryModalSignal;
 
   startShopping(){
-    this.categoryService.getAllCategories().subscribe(data=>{console.log(data)});
+    this.showCategory.set(true);
   }
 }
