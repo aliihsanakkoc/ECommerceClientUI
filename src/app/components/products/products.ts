@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Product } from '../../models/product';
@@ -12,7 +12,9 @@ import { Product } from '../../models/product';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Products {
-    private route = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
   private productService = inject(ProductService);
 
   private paramMapSignal = toSignal(this.route.paramMap, { initialValue: null });
@@ -58,4 +60,8 @@ export class Products {
       error: () => this.loading.set(false)
     });
   }
+  goToDetail(product: Product) {
+  this.router.navigate(['productDetail', product.id], { state: { product } });
+}
+
 }

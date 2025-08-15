@@ -6,6 +6,7 @@ import { ApiUri } from '../models/api-uri';
 import { User } from '../models/user';
 import { showLoginModalSignal } from '../modal.state';
 import { AccessToken } from '../models/access-token';
+import { accessTokenSignal } from '../access-token-signal';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AuthService {
   refreshToken():Observable<AccessToken>{
     return this.http.get<AccessToken>(`${ApiUri}Auth/RefreshToken`).pipe(tap(response=>{
       sessionStorage.setItem("accessToken",JSON.stringify(response));
+      accessTokenSignal.set(response);
     }))
   }
 }

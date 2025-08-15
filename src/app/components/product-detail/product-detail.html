@@ -1,0 +1,66 @@
+<div class="grid grid-cols-5 gap-4">
+  <!-- Product Info -->
+  <div class="col-span-2 bg-white rounded-xl shadow p-4 flex flex-col items-center">
+    @if (product(); as p) {
+      <img [src]="p.productImageUrl" alt="{{ p.productName }}" class="max-h-60 object-contain mb-4" />
+      <h2 class="text-xl font-bold mb-2">{{ p.productName }}</h2>
+      <p class="text-gray-600 mb-2">{{ p.productDescription }}</p>
+      <p class="text-lg font-semibold text-green-600">{{ p.productPrice | currency:'TL ' }}</p>
+    }
+  </div>
+
+  <!-- Extra Entries -->
+  <div class="col-span-2 bg-white rounded-xl shadow p-4">
+    <h3 class="text-lg font-semibold mb-2">Ekstra Bilgiler</h3>
+    <table class="w-full text-sm text-left border">
+      <thead>
+        <tr class="bg-gray-100 border-b">
+          <th class="p-2">Özellik</th>
+          <th class="p-2">Değer</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (entry of extraEntries(); track $index) {
+          
+            @for (key of getKeys(entry); track key) {
+            <tr class="border-b">
+              <td class="p-2">{{ key }}</td>
+              <td class="p-2">{{ entry[key] }}</td>
+            </tr>
+            }
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Variants -->
+   @if(variantGroups().length>0){
+      <div class="col-span-1 bg-white rounded-xl shadow p-4">
+    <h3 class="text-lg font-semibold mb-2">Varyantlar</h3>
+    @for (group of variantGroups(); track group.topVariantId) {
+      <label class="block mb-1">{{ group.topVariantName }}</label>
+      <select class="border rounded p-1 w-full mb-2"
+              (change)="onVariantSelect(group.topVariantId, $any($event.target).value)">
+        <option value="">Seçiniz</option>
+        @for (opt of group.options; track opt.id) {
+          <option [value]="opt.id">{{ opt.variantName }}</option>
+        }
+      </select>
+    }
+
+    @if (canAddToCart()) {
+      <button class="bg-blue-600 text-white rounded p-2 w-full mt-4">
+        Sepete Ekle
+      </button>
+    }
+  </div>
+   }@else {
+    <div class="col-span-1 bg-white rounded-xl shadow p-4 flex">
+        <button class="bg-blue-600 text-white rounded p-2 w-full mt-4 items-center">
+        Sepete Ekle
+      </button>
+    </div>
+   }
+
+</div>
+
